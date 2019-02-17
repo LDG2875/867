@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+int n,m,x,y,lg,i;
+int a[10005];
+
+void bs()
+{
+    for(int i = 1; i <= lg; ++i)
+        for(int j = i + 1; j <= lg ; ++j)
+            if(a[i] > a[j])
+                swap(a[i],a[j]);
+}
+
+int main()
+{
+    cin >> n >> m >> x >> y;
+    if(x > y)
+        swap(x, y);
+    a[++lg] = m;
+    while(m + x <= n)
+        a[++lg] = (m+= x);
+    i = 1;
+    while(a[i] + y <= n)
+        a[++lg] = a[i] +y,i++;
+    bs();
+    for(i = 1; i <= lg; ++i)
+        cout << a[i] << " ";
+    return 0;
+}
